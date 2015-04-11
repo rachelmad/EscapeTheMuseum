@@ -20,8 +20,8 @@ def main():
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     
     while True:
-        manOnMoonRoom()
-        constellation()
+        #manOnMoonRoom()
+        #constellation()
         dinosaurRoom()
 
 
@@ -48,17 +48,20 @@ def constellationRoom():
         pygame.display.update()
         FPSCLOCK.tick(FPS)
         
-
+        
 def dinosaurRoom():
+    dinosaurBackGround = pygame.image.load('dinosaur.jpg')
+    dinosaurBackGround = pygame.transform.scale(dinosaurBackGround, (WINDOWWIDTH, WINDOWHEIGHT))
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
                 terminate()     
         
         DISPLAYSURF.fill(BGCOLOR)
-        
+        DISPLAYSURF.blit(dinosaurBackGround, (0, 0))
         pygame.display.update()
         FPSCLOCK.tick(FPS)	
+
 
 def terminate():
     pygame.quit()
