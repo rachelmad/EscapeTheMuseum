@@ -20,10 +20,12 @@ def main():
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     
     while True:
-        runGame()
+        manOnMoonRoom()
+        constellation()
+        dinosaurRoom()
 
 
-def runGame():
+def manOnMoonRoom():
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
@@ -33,7 +35,30 @@ def runGame():
         
         pygame.display.update()
         FPSCLOCK.tick(FPS)
-		
+        
+
+def constellationRoom():
+    while True: # main game loop
+        for event in pygame.event.get(): # event handling loop
+            if event.type == QUIT:
+                terminate()     
+        
+        DISPLAYSURF.fill(BGCOLOR)
+        
+        pygame.display.update()
+        FPSCLOCK.tick(FPS)
+        
+
+def dinosaurRoom():
+    while True: # main game loop
+        for event in pygame.event.get(): # event handling loop
+            if event.type == QUIT:
+                terminate()     
+        
+        DISPLAYSURF.fill(BGCOLOR)
+        
+        pygame.display.update()
+        FPSCLOCK.tick(FPS)	
 
 def terminate():
     pygame.quit()
