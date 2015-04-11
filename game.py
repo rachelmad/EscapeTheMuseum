@@ -1,4 +1,6 @@
 import random, pygame, sys
+import Tkinter
+import tkMessageBox
 from pygame.locals import *
 
 #Global variables
@@ -22,7 +24,12 @@ def main():
     while True:
         #manOnMoonRoom()
         constellationRoom()
+<<<<<<< HEAD
         #dinosaurRoom()
+=======
+        dinosaurRoom()
+        grandRoom()
+>>>>>>> bec7b7259cbd2136be470ddfd9f6d94fabfef5d9
 
 
 def manOnMoonRoom():
@@ -59,12 +66,25 @@ def dinosaurRoom():
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
-                terminate()     
-        
+                terminate()
+
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(dinosaurBackGround, (0, 0))
         pygame.display.update()
-        FPSCLOCK.tick(FPS)	
+        FPSCLOCK.tick(FPS)
+
+def grandRoom():
+    grandBackGround = pygame.image.load('grandEntryHall.jpg')
+    grandBackGround = pygame.transform.scale(grandBackGround, (WINDOWWIDTH, WINDOWHEIGHT))
+    while True: # main game loop
+        for event in pygame.event.get(): # event handling loop
+            if event.type == QUIT:
+                terminate()
+
+        DISPLAYSURF.fill(BGCOLOR)
+        DISPLAYSURF.blit(grandBackGround, (0, 0))
+        pygame.display.update()
+        FPSCLOCK.tick(FPS)
 
 
 def terminate():
