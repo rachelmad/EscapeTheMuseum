@@ -51,7 +51,7 @@ def manOnMoonRoom():
     clueClicked = 0
     clueText = None
     score = 0
-    answered = [0, 0, 0, 0]
+    answered = [0, 0, 0]
     showAnswer = False
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
@@ -59,14 +59,7 @@ def manOnMoonRoom():
                 terminate()
             elif event.type == MOUSEBUTTONDOWN:
                 mousex, mousey = event.pos
-                if (mousex > 430 and mousex < 630 and mousey > 355 < 450 ):
-                    clueClicked = -1
-                    clueText = "The First Man on the moon.."
-                    answer1 = "Bob Dylan"
-                    answer2 = "Michael Collins"
-                    answer3 = "Neil Armstrong"
-                    answer = 3
-                elif (mousex > 350 and mousex < 790 and mousey < 215 and mousey > 57):
+                if (mousex > 350 and mousex < 790 and mousey < 215 and mousey > 57):
                     clueClicked = -1
                     clueText = "Landed the first humans on the moon"
                     answer1 = "Lunar Rover"
@@ -97,7 +90,7 @@ def manOnMoonRoom():
                         score += 1
                         answered[clueClicked - 1] = 1
                         print score
-        if score == 3:
+        if score == 2:
             return
         pygame.display.update()
         FPSCLOCK.tick(FPS)
