@@ -34,15 +34,12 @@ def startPage():
             elif event.type == MOUSEBUTTONDOWN:
                 mousex, mousey = event.pos
                 if (mousex > 680 and mousex < 780 and mousey > 475 and mousey < 580):
-                    while True:
+                    #while True:
                         manOnMoonRoom()
                         constellationRoom()
                         dinosaurRoom()
-<<<<<<< HEAD
-                        #grandRoom()
-=======
                         grandRoom()
->>>>>>> origin/master
+                        
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(startBackground, (0, 0))
         pygame.display.update()
@@ -143,8 +140,6 @@ def constellationRoom():
                     answer2 = "South"
                     answer3 = "North"
                     answer = 3
-<<<<<<< HEAD
-=======
                 elif (mousex > 637 and mousex < 677 and mousey > 476 and mousey < 516):
                     clueClicked = -1
                     clueText = "Ursa Major is visible in the S Hemisphere"
@@ -152,7 +147,6 @@ def constellationRoom():
                     answer2 = "False"
                     answer3 = "Maybe"
                     answer = 2
->>>>>>> origin/master
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(constellationBkgd, (0, 0))
         if clueClicked < 0 or showAnswer == True:
@@ -252,9 +246,9 @@ def grandRoom():
                    clueClicked = -1
                    clueText = "Who is the famous Romanov Daughter?"
                    answer1 = "Marilyn Monroe"
-                   answer2 = "Tatiana"
-                   answer3 = "Anastasia"
-                   answer = 3
+                   answer2 = "Anastasia"
+                   answer3 = "Tatiana"
+                   answer = 2
                 elif (mousex > 291 and mousex < 306 and mousey > 9 and mousey < 23):
                     clueClicked = -1
                     clueText = "What illness did the Romanov son have?"
@@ -269,13 +263,6 @@ def grandRoom():
                     answer2 = "Iceland"
                     answer3 = "Russia"
                     answer = 3
-                elif (mousex > 45 and mousex < 72 and mousey > 310 and mousey < 335):
-                    clueClicked = -1
-                    clueText = "The Romanov family advisor was..."
-                    answer1 = "Vladimir Putin"
-                    answer2 = "Rasputin"
-                    answer3 = "Karl Marx"
-                    answer = 2
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(grandBackGround, (0, 0))
         if clueClicked < 0 or showAnswer == True:
@@ -292,7 +279,7 @@ def grandRoom():
                         score += 1
                         answered[clueClicked - 1] = 1 
                         print score               
-        if score == 4:
+        if score == 3:
             return
 
     
