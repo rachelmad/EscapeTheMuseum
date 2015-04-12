@@ -24,8 +24,7 @@ def main():
     while True:
         #manOnMoonRoom()
         #constellationRoom()
-        constellationRoom()
-        #dinosaurRoom()
+        dinosaurRoom()
         dinosaurRoom()
         grandRoom()
 
@@ -67,7 +66,7 @@ def dinosaurRoom():
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
                 terminate()
-            elif event.type == MOUSEBUTTONUP:
+            elif event.type == MOUSEBUTTONDOWN:
                 mousex, mousey = event.pos
                 if (mousex > 530 and mousex < 540 and mousey > 355 and mousey < 365):
                     clueClicked = True
@@ -75,7 +74,7 @@ def dinosaurRoom():
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(dinosaurBackGround, (0, 0))
         if clueClicked:
-            displayClue(clueText)
+            clueClicked = displayClue(clueText, mousex, mousey)
         pygame.display.update()
         FPSCLOCK.tick(FPS)
 
@@ -94,8 +93,33 @@ def grandRoom():
         FPSCLOCK.tick(FPS)
 
 
-def displayClue(text):
-    print text
+def displayClue(text, mousex, mousey):
+    bigRect = pygame.Rect(50, 50, WINDOWWIDTH - 100, WINDOWHEIGHT - 100)
+    smallRect = pygame.Rect(55, 55, WINDOWWIDTH - 110, WINDOWHEIGHT - 110)
+    pygame.draw.rect(DISPLAYSURF, BLACK, bigRect)
+    pygame.draw.rect(DISPLAYSURF, WHITE, smallRect)
+    
+    bigButton = pygame.Rect(WINDOWWIDTH / 2 - 50, WINDOWHEIGHT - 150, 100, 50)
+    smallButton = pygame.Rect(WINDOWWIDTH / 2 - 45, WINDOWHEIGHT - 145, 90, 40)
+    pygame.draw.rect(DISPLAYSURF, BLACK, bigButton)
+    pygame.draw.rect(DISPLAYSURF, RED, smallButton)
+    
+    clueFont = pygame.font.Font('freesansbold.ttf', 35)
+    clueSurf = clueFont.render(text, True, BLACK)
+    clueRect = clueSurf.get_rect()
+    clueRect.midtop = (WINDOWWIDTH / 2, 80)
+    
+    okSurf = clueFont.render("OK", True, BLACK)
+    okRect = okSurf.get_rect()
+    okRect.midtop = (WINDOWWIDTH / 2, WINDOWHEIGHT - 140)
+    
+    DISPLAYSURF.blit(clueSurf, clueRect)
+    DISPLAYSURF.blit(okSurf, okRect)
+    
+    if (mousex > (WINDOWWIDTH / 2 - 50) and mousex < (WINDOWWIDTH / 2 - 50) + 100 and mousey > (WINDOWHEIGHT - 150) and mousey < (WINDOWHEIGHT - 150 + 50)):
+        return False
+        
+    return True
     
     
 def terminate():
