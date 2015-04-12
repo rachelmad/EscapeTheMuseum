@@ -1,7 +1,4 @@
-<<<<<<< Local Changes
 import random, pygame, sys
-import Tkinter
-import tkMessageBox
 from pygame.locals import *
 
 #Global variables
@@ -208,5 +205,4 @@ def terminate():
 
 
 if __name__ == '__main__':
-    main()=======
->>>>>>> External Changes
+    main()
