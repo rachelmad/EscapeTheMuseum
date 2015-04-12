@@ -34,11 +34,13 @@ def startPage():
             if event.type == QUIT:
                 terminate()
             elif event.type == MOUSEBUTTONDOWN:
-                while True:
-                    manOnMoonRoom()
-                    constellationRoom()
-                    dinosaurRoom()
-                    grandRoom()
+                mousex, mousey = event.pos
+                if (mousex < 700 and mousey < 600):
+                    while True:
+                        manOnMoonRoom()
+                        constellationRoom()
+                        dinosaurRoom()
+                        grandRoom()
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(startBackground, (0, 0))
         pygame.display.update()
