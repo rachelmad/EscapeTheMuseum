@@ -22,12 +22,27 @@ def main():
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-    
-    while True:
-        #manOnMoonRoom()
-        constellationRoom()
-        dinosaurRoom()
-        grandRoom()
+
+    startPage()
+
+
+def startPage():
+    startBackground = pygame.image.load('coverpage.jpg')
+    startBackground = pygame.transform.scale(startBackground, (WINDOWWIDTH, WINDOWHEIGHT))
+    while True: # main game loop
+        for event in pygame.event.get(): # event handling loop
+            if event.type == QUIT:
+                terminate()
+            elif event.type == MOUSEBUTTONDOWN:
+                while True:
+                    manOnMoonRoom()
+                    constellationRoom()
+                    dinosaurRoom()
+                    grandRoom()
+        DISPLAYSURF.fill(BGCOLOR)
+        DISPLAYSURF.blit(startBackground, (0, 0))
+        pygame.display.update()
+        FPSCLOCK.tick(FPS)
 
 def manOnMoonRoom():
     manOnMoonBackGround = pygame.image.load('manOnTheMoon.jpg')
