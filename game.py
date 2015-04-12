@@ -36,9 +36,9 @@ def startPage():
                 if (mousex > 680 and mousex < 780 and mousey > 475 and mousey < 580):
                     while True:
                         #manOnMoonRoom()
-                        #constellationRoom()
-                        dinosaurRoom()
-                        grandRoom()
+                        constellationRoom()
+                        #dinosaurRoom()
+                        #grandRoom()
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(startBackground, (0, 0))
         pygame.display.update()
@@ -59,14 +59,57 @@ def manOnMoonRoom():
         
 
 def constellationRoom():
-    constellationBackground = pygame.image.load('constellations.jpg')
-    constellationBackground = pygame.transform.scale(constellationBackground, (WINDOWWIDTH, WINDOWHEIGHT))
+    constellationBkgd = pygame.image.load('constellations.jpg')
+    constellationBkgd = pygame.transform.scale(constellationBkgd, (WINDOWWIDTH, WINDOWHEIGHT))
+    clueClicked = 0
+    clueText = None
+    score = 0
+    answered = [0, 0, 0, 0]
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
                 terminate()
+            elif event.type == MOUSEBUTTONDOWN:
+                mousex, mousey = event.pos
+                print mousex
+                print mousey
+                if (mousex > 125 and mousex < 165 and mousey > 229 and mousey < 269):
+                    clueClicked = -1
+                    clueText = "The ___ is the only known star in our galaxy which is not part of a constellation."
+                    answer1 = "Rigel"
+                    answer2 = "Sun"
+                    answer3 = "Capella A"
+                    answer = 2
+                elif (mousex > 80 and mousex < 120 and mousey > 546 and mousey < 586):
+                    clueClicked = -1
+                    clueText = "How many zodiac constellations are there?"
+                    answer1 = "13"
+                    answer2 = "14"
+                    answer3 = "11"
+                    answer = 1
+                elif (mousex > 479 and mousex < 529 and mousey > 309 and mousey < 349):
+                    clueClicked = -1
+                    clueText = "The _____ star lets navigators figure out their latitude to help ships travel across the oceans."
+                    answer1 = "Bright"
+                    answer2 = "South"
+                    answer3 = "North"
+                    answer = 3
+                elif (mousex > 637 and mousex < 677 and mousey > 476 and mousey < 516):
+                    clueClicked = -1
+                    clueText = "Ursa Major is visible in the Southern Hemisphere."
+                    answer1 = "True"
+                    answer2 = "False"
+                    answer3 = "Maybe"
+                    answer = 2
         DISPLAYSURF.fill(BGCOLOR)
-        DISPLAYSURF.blit(constellationBackground, (0, 0))
+        DISPLAYSURF.blit(constellationBkgd, (0, 0))
+        if clueClicked < 0:
+            clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
+            if clueClicked > 0 and answered[clueClicked - 1] == 0:
+                score += 1
+                answered[clueClicked - 1] = 1                
+        if score == 4:
+            return
         pygame.display.update()
         FPSCLOCK.tick(FPS)
         
@@ -84,7 +127,7 @@ def dinosaurRoom():
                 terminate()
             elif event.type == MOUSEBUTTONDOWN:
                 mousex, mousey = event.pos
-                if (mousex > 530 and mousex < 540 and mousey > 355 and mousey < 365):
+                if (mousex > 510 and mousex < 540 and mousey > 335 and mousey < 365):
                     clueClicked = -1
                     clueText = "When did dinosaurs die out"
                     answer1 = "65,000 years ago"
