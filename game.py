@@ -35,7 +35,7 @@ def startPage():
                 mousex, mousey = event.pos
                 if (mousex > 680 and mousex < 780 and mousey > 475 and mousey < 580):
                     #while True:
-                        manOnMoonRoom()
+                        #manOnMoonRoom()
                         constellationRoom()
                         dinosaurRoom()
                         grandRoom()
@@ -66,7 +66,14 @@ def manOnMoonRoom():
                     answer2 = "Apollo 11"
                     answer3 = "Eagle"
                     answer = 2
-                elif (mousex > 0 and mousex < 300 and mousey > 118 and mousey < 320 ):
+                elif (mousex > 436 and mousex < 630 and mousey > 355 and mousey < 450 ):
+                    clueClicked = -1
+                    clueText = "First Man to walk on the Moon?"
+                    answer1 = "Neil Armstrong"
+                    answer2 = "Bob Dylan"
+                    answer3 = "Michael Young"
+                    answer = 1
+                elif (mousex > 8 and mousex < 300 and mousey > 118 and mousey < 320 ):
                     clueClicked = -1
                     clueText = "Which is not one of the moon phases?"
                     answer1 = "New Moon"
@@ -90,7 +97,7 @@ def manOnMoonRoom():
                         score += 1
                         answered[clueClicked - 1] = 1
                         print score
-        if score == 2:
+        if score == 3:
             return
         pygame.display.update()
         FPSCLOCK.tick(FPS)
