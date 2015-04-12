@@ -37,7 +37,7 @@ def startPage():
                     while True:
                         #manOnMoonRoom()
                         #constellationRoom()
-                        dinosaurRoom()
+                        #dinosaurRoom()
                         grandRoom()
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(startBackground, (0, 0))
@@ -138,13 +138,67 @@ def dinosaurRoom():
 def grandRoom():
     grandBackGround = pygame.image.load('grandEntryHall.jpg')
     grandBackGround = pygame.transform.scale(grandBackGround, (WINDOWWIDTH, WINDOWHEIGHT))
+    clueClicked = 0
+    clueText = None
+    score = 0
+    answered = [0, 0, 0, 0]
+    showAnswer = False
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
                 terminate()
-
+            elif event.type == MOUSEBUTTONDOWN:
+                mousex, mousey = event.pos
+                print mousex
+                print mousey
+                if (mousex > 557 and mousex < 573 and mousey > 320 and mousey < 379):
+                   clueClicked = -1
+                   clueText = "Who is the famous Romanov Daughter?"
+                   answer1 = "Marilyn Monroe"
+                   answer2 = "Tatiana"
+                   answer3 = "Anastasia"
+                   answer = 3
+                elif (mousex > 170 and mousex < 195 and mousey > 405 and mousey < 415):
+                    clueClicked = -1
+                    clueText = "What illness did the Romanov son have?"
+                    answer1 = "Hemophilia"
+                    answer2 = "Scurvy"
+                    answer3 = "Measles"
+                    answer = 1
+                elif (mousex > 450 and mousex < 475 and mousey > 425 and mousey < 440):
+                    clueClicked = -1
+                    clueText = "Where did the Romanovs live?"
+                    answer1 = "Germany"
+                    answer2 = "Iceland"
+                    answer3 = "Russia"
+                    answer = 3
+                elif (mousex > 300 and mousex < 315 and mousey > 405 and mousey < 415):
+                    clueClicked = -1
+                    clueText = "The Romanov family advisor was..."
+                    answer1 = "Vladimir Putin"
+                    answer2 = "Rasputin"
+                    answer3 = "Karl Marx"
+                    answer = 2
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(grandBackGround, (0, 0))
+        if clueClicked < 0 or showAnswer == True:
+            if showAnswer == True and clueClicked == 0:
+                showAnswer = resultBox("Try again :(", mousex, mousey)
+            elif showAnswer == True and clueClicked > 0:
+                showAnswer = resultBox("Correct!", mousex, mousey)
+            else:
+                clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
+                if clueClicked >= 0:
+                    showAnswer = True
+                    print score
+                    if answered[clueClicked - 1] == 0:
+                        score += 1
+                        answered[clueClicked - 1] = 1 
+                        print score               
+        if score == 4:
+            return
+
+    
         pygame.display.update()
         FPSCLOCK.tick(FPS)
 
