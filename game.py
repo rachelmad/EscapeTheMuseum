@@ -121,6 +121,7 @@ def dinosaurRoom():
     clueText = None
     score = 0
     answered = [0, 0, 0, 0]
+    showAnswer = False
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
@@ -157,11 +158,20 @@ def dinosaurRoom():
                     answer = 2
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(dinosaurBackGround, (0, 0))
-        if clueClicked < 0:
-            clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
-            if clueClicked > 0 and answered[clueClicked - 1] == 0:
-                score += 1
-                answered[clueClicked - 1] = 1                
+        if clueClicked < 0 or showAnswer == True:
+            if showAnswer == True and clueClicked == 0:
+                showAnswer = resultBox("Try again :(", mousex, mousey)
+            elif showAnswer == True and clueClicked > 0:
+                showAnswer = resultBox("Correct!", mousex, mousey)
+            else:
+                clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
+                if clueClicked >= 0:
+                    showAnswer = True
+                    print score
+                    if answered[clueClicked - 1] == 0:
+                        score += 1
+                        answered[clueClicked - 1] = 1 
+                        print score               
         if score == 4:
             return
         pygame.display.update()
@@ -236,7 +246,7 @@ def displayClue(text, mousex, mousey, answer1, answer2, answer3, correct):
         if (mousex > 90 and mousex < 90 + 35 and mousey > 200 and mousey < 200 + 35):
             return 0
         if (mousex > 90 and mousex < 90 + 35 and mousey > 300 and mousey < 300 + 35):
-            return 1
+            return 2
         if (mousex > 90 and mousex < 90 + 35 and mousey > 400 and mousey < 400 + 35):
             return 0
     if correct == 3:
@@ -245,10 +255,39 @@ def displayClue(text, mousex, mousey, answer1, answer2, answer3, correct):
         if (mousex > 90 and mousex < 90 + 35 and mousey > 300 and mousey < 300 + 35):
             return 0
         if (mousex > 90 and mousex < 90 + 35 and mousey > 400 and mousey < 400 + 35):
-            return 1
+            return 3
         
     return -1
     
+    
+def resultBox(text, mousex, mousey):
+    bigRect = pygame.Rect(50, 50, WINDOWWIDTH - 100, WINDOWHEIGHT - 100)
+    smallRect = pygame.Rect(55, 55, WINDOWWIDTH - 110, WINDOWHEIGHT - 110)
+    pygame.draw.rect(DISPLAYSURF, BLACK, bigRect)
+    pygame.draw.rect(DISPLAYSURF, WHITE, smallRect)
+    
+    clueFont = pygame.font.Font('freesansbold.ttf', 35)
+    clueSurf = clueFont.render(text, True, BLACK)
+    clueRect = clueSurf.get_rect()
+    clueRect.midtop = (WINDOWWIDTH / 2, 80)
+    
+    DISPLAYSURF.blit(clueSurf, clueRect)
+    
+    bigButton1 = pygame.Rect(WINDOWWIDTH / 2 - 50, WINDOWHEIGHT - 130, 100, 50)
+    smallButton1 = pygame.Rect(WINDOWWIDTH /2 - 45, WINDOWHEIGHT - 125, 90, 40)
+    pygame.draw.rect(DISPLAYSURF, BLACK, bigButton1)
+    pygame.draw.rect(DISPLAYSURF, RED, smallButton1)
+    
+    okSurf = clueFont.render("OK", True, BLACK)
+    okRect = okSurf.get_rect()
+    okRect.midtop = (WINDOWWIDTH / 2, WINDOWHEIGHT - 120)
+    
+    DISPLAYSURF.blit(okSurf, okRect)
+    
+    if (mousex > WINDOWWIDTH / 2 - 50 and mousex < WINDOWWIDTH / 2 - 50 + 150 and mousey > WINDOWHEIGHT - 130 and mousey < WINDOWHEIGHT - 130 + 50):
+        return False
+        
+    return True
     
 def terminate():
     pygame.quit()
