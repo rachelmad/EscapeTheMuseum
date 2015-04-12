@@ -37,8 +37,8 @@ def startPage():
                     while True:
                         #manOnMoonRoom()
                         constellationRoom()
-                        #dinosaurRoom()
-                        #grandRoom()
+                        dinosaurRoom()
+                        grandRoom()
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(startBackground, (0, 0))
         pygame.display.update()
@@ -120,28 +120,28 @@ def constellationRoom():
                 print mousey
                 if (mousex > 125 and mousex < 165 and mousey > 229 and mousey < 269):
                     clueClicked = -1
-                    clueText = "The ___ is the only known star in our galaxy which is not part of a constellation."
+                    clueText = "The ___ is not part of a constellation."
                     answer1 = "Rigel"
                     answer2 = "Sun"
                     answer3 = "Capella A"
                     answer = 2
                 elif (mousex > 80 and mousex < 120 and mousey > 546 and mousey < 586):
                     clueClicked = -1
-                    clueText = "How many zodiac constellations are there?"
+                    clueText = "How many zodiac constellations r there?"
                     answer1 = "13"
                     answer2 = "14"
                     answer3 = "11"
                     answer = 1
                 elif (mousex > 479 and mousex < 529 and mousey > 309 and mousey < 349):
                     clueClicked = -1
-                    clueText = "The _____ star lets navigators figure out their latitude to help ships travel across the oceans."
+                    clueText = "__ star can help you find your latitude."
                     answer1 = "Bright"
                     answer2 = "South"
                     answer3 = "North"
                     answer = 3
                 elif (mousex > 637 and mousex < 677 and mousey > 476 and mousey < 516):
                     clueClicked = -1
-                    clueText = "Ursa Major is visible in the Southern Hemisphere."
+                    clueText = "Ursa Major is visible in the S Hemisphere"
                     answer1 = "True"
                     answer2 = "False"
                     answer3 = "Maybe"
