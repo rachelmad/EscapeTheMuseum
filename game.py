@@ -1,4 +1,3 @@
-<<<<<<< Local Changes
 import random, pygame, sys
 import Tkinter
 import tkMessageBox
@@ -38,8 +37,8 @@ def startPage():
                 mousex, mousey = event.pos
                 if (mousex > 680 and mousex < 780 and mousey > 475 and mousey < 580):
                     while True:
-                        manOnMoonRoom()
-                        constellationRoom()
+                        #manOnMoonRoom()
+                        #constellationRoom()
                         dinosaurRoom()
                         grandRoom()
         DISPLAYSURF.fill(BGCOLOR)
@@ -79,9 +78,8 @@ def dinosaurRoom():
     dinosaurBackGround = pygame.transform.scale(dinosaurBackGround, (WINDOWWIDTH, WINDOWHEIGHT))
     clueClicked = 0
     clueText = None
-    answer1 = None
-    answer2 = None
-    answer3 = None
+    score = 0
+    answered = [0, 0, 0, 0]
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
@@ -90,32 +88,41 @@ def dinosaurRoom():
                 mousex, mousey = event.pos
                 if (mousex > 530 and mousex < 540 and mousey > 355 and mousey < 365):
                     clueClicked = -1
-                    clueText = "Clue 1"
-                    answer1 = "blah"
-                    answer2 = "blah"
-                    answer3 = "blah"
+                    clueText = "When did dinosaurs die out"
+                    answer1 = "65,000 years ago"
+                    answer2 = "65 million years ago"
+                    answer3 = "65 billion years ago"
+                    answer = 2
                 elif (mousex > 170 and mousex < 195 and mousey > 405 and mousey < 415):
                     clueClicked = -1
-                    clueText = "Clue 2"
-                    answer1 = "blah"
-                    answer2 = "blah"
-                    answer3 = "blah"
+                    clueText = "Dinosaurs laid eggs"
+                    answer1 = "Always"
+                    answer2 = "Sometimes"
+                    answer3 = "Never"
+                    answer = 1
                 elif (mousex > 450 and mousex < 475 and mousey > 425 and mousey < 440):
                     clueClicked = -1
-                    clueText = "Clue 3"
-                    answer1 = "blah"
-                    answer2 = "blah"
-                    answer3 = "blah"
+                    clueText = "Dinosaur fossils have been found in..."
+                    answer1 = "Africa, Asia, and Antartica"
+                    answer2 = "Asia, Africa, and North America"
+                    answer3 = "All seven continents"
+                    answer = 3
                 elif (mousex > 300 and mousex < 315 and mousey > 405 and mousey < 415):
                     clueClicked = -1
-                    clueText = "Clue 4"
-                    answer1 = "blah"
-                    answer2 = "blah"
-                    answer3 = "blah"
+                    clueText = "People who study dinosaurs are called..."
+                    answer1 = "Dinotologists"
+                    answer2 = "Paleontologists"
+                    answer3 = "Fossilogists"
+                    answer = 2
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(dinosaurBackGround, (0, 0))
         if clueClicked < 0:
-            clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, 1)
+            clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
+            if clueClicked > 0 and answered[clueClicked - 1] == 0:
+                score += 1
+                answered[clueClicked - 1] = 1                
+        if score == 4:
+            return
         pygame.display.update()
         FPSCLOCK.tick(FPS)
 
@@ -208,5 +215,5 @@ def terminate():
 
 
 if __name__ == '__main__':
-    main()=======
->>>>>>> External Changes
+    main()
+
