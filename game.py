@@ -35,7 +35,7 @@ def startPage():
                 mousex, mousey = event.pos
                 if (mousex > 680 and mousex < 780 and mousey > 475 and mousey < 580):
                     while True:
-                        #manOnMoonRoom()
+                        manOnMoonRoom()
                         #constellationRoom()
                         dinosaurRoom()
                         grandRoom()
@@ -47,13 +47,47 @@ def startPage():
 def manOnMoonRoom():
     manOnMoonBackGround = pygame.image.load('manOnTheMoon.jpg')
     manOnMoonBackGround = pygame.transform.scale(manOnMoonBackGround, (WINDOWWIDTH, WINDOWHEIGHT))
+    clueClicked = 0
+    clueText = None
+    score = 0
+    answered = [0, 0, 0, 0]
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
                 terminate()
+            elif event.type == MOUSEBUTTONDOWN:
+                mousex, mousey = event.pos
+                if (mousex > 430 and mousex < 630 and mousey > 355 < 450 ):
+                    clueClicked = -1
+                    clueText = "The First Man on the moon.."
+                    answer1 = "Bob Dylan"
+                    answer2 = "Michael Collins"
+                    answer3 = "Neil Armstrong"
+                    answer = 3
+                elif (mousex > 350 and mousex < 790 and mousey < 215 and mousey > 57):
+                    clueClicked = -1
+                    clueText = "Landed the first humans on the moon"
+                    answer1 = "Lunar Rover"
+                    answer2 = "Apollo 11"
+                    answer3 = "Eagle"
+                    answer = 2
+                elif (mousex > 0 and mousex < 300 and mousey > 118 and mousey < 320 ):
+                    clueClicked = -1
+                    clueText = "Which is not one of the moon phases?"
+                    answer1 = "New Moon"
+                    answer2 = "Last Quarter"
+                    answer3 = "Half Moon"
+                    answer = 3
 
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(manOnMoonBackGround, (0, 0))
+        if clueClicked < 0:
+            clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
+            if clueClicked > 0 and answered[clueClicked - 1] == 0:
+                score += 1
+                answered[clueClicked - 1] = 1
+        if score == 3:
+            return
         pygame.display.update()
         FPSCLOCK.tick(FPS)
         
