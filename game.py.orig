@@ -36,12 +36,15 @@ def startPage():
                 if (mousex > 680 and mousex < 780 and mousey > 475 and mousey < 580):
                     while True:
                         #manOnMoonRoom()
-
+<<<<<<< HEAD
                         #constellationRoom()
                         #dinosaurRoom()
-                        
-
                         grandRoom()
+=======
+                        constellationRoom()
+                        #dinosaurRoom()
+                        #grandRoom()
+>>>>>>> 59c075618d189a0d23f727c0a46757e56731ec19
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(startBackground, (0, 0))
         pygame.display.update()
@@ -50,47 +53,13 @@ def startPage():
 def manOnMoonRoom():
     manOnMoonBackGround = pygame.image.load('manOnTheMoon.jpg')
     manOnMoonBackGround = pygame.transform.scale(manOnMoonBackGround, (WINDOWWIDTH, WINDOWHEIGHT))
-    clueClicked = 0
-    clueText = None
-    score = 0
-    answered = [0, 0, 0, 0]
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
                 terminate()
-            elif event.type == MOUSEBUTTONDOWN:
-                mousex, mousey = event.pos
-                if (mousex > 430 and mousex < 630 and mousey > 355 < 450 ):
-                    clueClicked = -1
-                    clueText = "The First Man on the moon.."
-                    answer1 = "Bob Dylan"
-                    answer2 = "Michael Collins"
-                    answer3 = "Neil Armstrong"
-                    answer = 3
-                elif (mousex > 350 and mousex < 790 and mousey < 215 and mousey > 57):
-                    clueClicked = -1
-                    clueText = "Landed the first humans on the moon"
-                    answer1 = "Lunar Rover"
-                    answer2 = "Apollo 11"
-                    answer3 = "Eagle"
-                    answer = 2
-                elif (mousex > 0 and mousex < 300 and mousey > 118 and mousey < 320 ):
-                    clueClicked = -1
-                    clueText = "Which is not one of the moon phases?"
-                    answer1 = "New Moon"
-                    answer2 = "Last Quarter"
-                    answer3 = "Half Moon"
-                    answer = 3
 
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(manOnMoonBackGround, (0, 0))
-        if clueClicked < 0:
-            clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
-            if clueClicked > 0 and answered[clueClicked - 1] == 0:
-                score += 1
-                answered[clueClicked - 1] = 1
-        if score == 3:
-            return
         pygame.display.update()
         FPSCLOCK.tick(FPS)
         
@@ -238,21 +207,21 @@ def grandRoom():
                    answer2 = "Tatiana"
                    answer3 = "Anastasia"
                    answer = 3
-                elif (mousex > 291 and mousex < 306 and mousey > 9 and mousey < 23):
+                elif (mousex > 170 and mousex < 195 and mousey > 405 and mousey < 415):
                     clueClicked = -1
                     clueText = "What illness did the Romanov son have?"
                     answer1 = "Hemophilia"
                     answer2 = "Scurvy"
                     answer3 = "Measles"
                     answer = 1
-                elif (mousex > 742 and mousex < 790 and mousey > 318 and mousey < 355):
+                elif (mousex > 450 and mousex < 475 and mousey > 425 and mousey < 440):
                     clueClicked = -1
                     clueText = "Where did the Romanovs live?"
                     answer1 = "Germany"
                     answer2 = "Iceland"
                     answer3 = "Russia"
                     answer = 3
-                elif (mousex > 45 and mousex < 72 and mousey > 310 and mousey < 335):
+                elif (mousex > 300 and mousex < 315 and mousey > 405 and mousey < 415):
                     clueClicked = -1
                     clueText = "The Romanov family advisor was..."
                     answer1 = "Vladimir Putin"
