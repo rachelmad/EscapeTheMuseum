@@ -35,7 +35,9 @@ def startPage():
                 terminate()
             elif event.type == MOUSEBUTTONDOWN:
                 mousex, mousey = event.pos
-                if (mousex < 700 and mousey < 600):
+                print mousex
+                print mousey
+                if (mousex > 680 and mousex < 780 and mousey > 475 and mousey < 580):
                     while True:
                         manOnMoonRoom()
                         constellationRoom()
