@@ -35,17 +35,10 @@ def startPage():
                 mousex, mousey = event.pos
                 if (mousex > 680 and mousex < 780 and mousey > 475 and mousey < 580):
                     while True:
-<<<<<<< HEAD
                         manOnMoonRoom()
-                        #constellationRoom()
+                        constellationRoom()
                         dinosaurRoom()
                         grandRoom()
-=======
-                        #manOnMoonRoom()
-                        constellationRoom()
-                        #dinosaurRoom()
-                        #grandRoom()
->>>>>>> origin/master
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(startBackground, (0, 0))
         pygame.display.update()
