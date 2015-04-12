@@ -1,6 +1,4 @@
 import random, pygame, sys
-import Tkinter
-import tkMessageBox
 from pygame.locals import *
 
 #Global variables
