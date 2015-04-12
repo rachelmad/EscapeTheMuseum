@@ -22,8 +22,8 @@ def main():
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     
     while True:
-        manOnMoonRoom()
-        constellationRoom()
+        #manOnMoonRoom()
+        #constellationRoom()
         dinosaurRoom()
         grandRoom()
 
@@ -57,15 +57,24 @@ def constellationRoom():
 def dinosaurRoom():
     dinosaurBackGround = pygame.image.load('dinosaur.jpg')
     dinosaurBackGround = pygame.transform.scale(dinosaurBackGround, (WINDOWWIDTH, WINDOWHEIGHT))
+    clueClicked = False
+    clueText = None
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
                 terminate()
-
+            elif event.type == MOUSEBUTTONUP:
+                mousex, mousey = event.pos
+                if (mousex > 530 and mousex < 540 and mousey > 355 and mousey < 365):
+                    clueClicked = True
+                    clueText = "Clue 1"
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(dinosaurBackGround, (0, 0))
+        if clueClicked:
+            displayClue(clueText)
         pygame.display.update()
         FPSCLOCK.tick(FPS)
+
 
 def grandRoom():
     grandBackGround = pygame.image.load('grandEntryHall.jpg')
@@ -81,6 +90,10 @@ def grandRoom():
         FPSCLOCK.tick(FPS)
 
 
+def displayClue(text):
+    print text
+    
+    
 def terminate():
     pygame.quit()
     sys.exit()
