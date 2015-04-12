@@ -37,7 +37,7 @@ def startPage():
                     while True:
                         #manOnMoonRoom()
                         constellationRoom()
-                        #dinosaurRoom()
+                        dinosaurRoom()
                         #grandRoom()
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(startBackground, (0, 0))
@@ -139,13 +139,6 @@ def constellationRoom():
                     answer2 = "South"
                     answer3 = "North"
                     answer = 3
-                elif (mousex > 637 and mousex < 677 and mousey > 476 and mousey < 516):
-                    clueClicked = -1
-                    clueText = "Ursa Major is visible in the Southern Hemisphere."
-                    answer1 = "True"
-                    answer2 = "False"
-                    answer3 = "Maybe"
-                    answer = 2
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(constellationBkgd, (0, 0))
         if clueClicked < 0 or showAnswer == True:
@@ -162,12 +155,7 @@ def constellationRoom():
                         score += 1
                         answered[clueClicked - 1] = 1 
                         print score               
-        if clueClicked < 0:
-            clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
-            if clueClicked > 0 and answered[clueClicked - 1] == 0:
-                score += 1
-                answered[clueClicked - 1] = 1
-        if score == 4:
+        if score == 3:
             return
         pygame.display.update()
         FPSCLOCK.tick(FPS)
@@ -179,7 +167,7 @@ def dinosaurRoom():
     clueClicked = 0
     clueText = None
     score = 0
-    answered = [0, 0, 0, 0]
+    answered = [0, 0, 0]
     showAnswer = False
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
@@ -194,13 +182,6 @@ def dinosaurRoom():
                     answer2 = "65 million years ago"
                     answer3 = "65 billion years ago"
                     answer = 2
-                elif (mousex > 170 and mousex < 195 and mousey > 405 and mousey < 415):
-                    clueClicked = -1
-                    clueText = "Dinosaurs laid eggs"
-                    answer1 = "Always"
-                    answer2 = "Sometimes"
-                    answer3 = "Never"
-                    answer = 1
                 elif (mousex > 450 and mousex < 475 and mousey > 425 and mousey < 440):
                     clueClicked = -1
                     clueText = "Dinosaur fossils have been found in..."
@@ -211,10 +192,10 @@ def dinosaurRoom():
                 elif (mousex > 300 and mousex < 315 and mousey > 405 and mousey < 415):
                     clueClicked = -1
                     clueText = "People who study dinosaurs are called..."
-                    answer1 = "Dinotologists"
-                    answer2 = "Paleontologists"
+                    answer1 = "Paleontologists"
+                    answer2 = "Dinologists"
                     answer3 = "Fossilogists"
-                    answer = 2
+                    answer = 1
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(dinosaurBackGround, (0, 0))
         if clueClicked < 0 or showAnswer == True:
@@ -231,7 +212,7 @@ def dinosaurRoom():
                         score += 1
                         answered[clueClicked - 1] = 1 
                         print score               
-        if score == 4:
+        if score == 3:
             return
         pygame.display.update()
         FPSCLOCK.tick(FPS)
