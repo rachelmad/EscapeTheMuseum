@@ -141,7 +141,7 @@ def constellationRoom():
             clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
             if clueClicked > 0 and answered[clueClicked - 1] == 0:
                 score += 1
-                answered[clueClicked - 1] = 1                
+                answered[clueClicked - 1] = 1
         if score == 4:
             return
         pygame.display.update()
