@@ -71,6 +71,15 @@ def dinosaurRoom():
                 if (mousex > 530 and mousex < 540 and mousey > 355 and mousey < 365):
                     clueClicked = True
                     clueText = "Clue 1"
+                elif (mousex > 170 and mouse < 195 and mousey > 405 and mousey < 415):
+                    clueClicked = True
+                    clueText = "Clue 2"
+                elif (mousex > 450 and mouse < 475 and mousey > 425 and mousey < 440):
+                    clueClicked = True
+                    clueText = "Clue 3"
+                elif (mousex > 300 and mouse < 315 and mousey > 405 and mousey < 415):
+                    clueClicked = True
+                    clueText = "Clue 4"
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(dinosaurBackGround, (0, 0))
         if clueClicked:
