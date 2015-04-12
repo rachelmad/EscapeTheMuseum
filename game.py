@@ -51,6 +51,7 @@ def manOnMoonRoom():
     clueText = None
     score = 0
     answered = [0, 0, 0, 0]
+    showAnswer = False
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
@@ -81,11 +82,20 @@ def manOnMoonRoom():
 
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(manOnMoonBackGround, (0, 0))
-        if clueClicked < 0:
-            clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
-            if clueClicked > 0 and answered[clueClicked - 1] == 0:
-                score += 1
-                answered[clueClicked - 1] = 1
+        if clueClicked < 0 or showAnswer == True:
+            if showAnswer == True and clueClicked == 0:
+                showAnswer = resultBox("Try again :(", mousex, mousey)
+            elif showAnswer == True and clueClicked > 0:
+                showAnswer = resultBox("Correct!", mousex, mousey)
+            else:
+                clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
+                if clueClicked >= 0:
+                    showAnswer = True
+                    print score
+                    if answered[clueClicked - 1] == 0:
+                        score += 1
+                        answered[clueClicked - 1] = 1
+                        print score
         if score == 3:
             return
         pygame.display.update()
@@ -152,6 +162,11 @@ def constellationRoom():
                         score += 1
                         answered[clueClicked - 1] = 1 
                         print score               
+        if clueClicked < 0:
+            clueClicked = displayClue(clueText, mousex, mousey, answer1, answer2, answer3, answer)
+            if clueClicked > 0 and answered[clueClicked - 1] == 0:
+                score += 1
+                answered[clueClicked - 1] = 1
         if score == 4:
             return
         pygame.display.update()
