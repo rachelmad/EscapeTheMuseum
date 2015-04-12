@@ -16,7 +16,7 @@ BGCOLOR = BLACK
 
 def main():
     global FPSCLOCK, DISPLAYSURF         #Global variables
-
+    
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
@@ -24,13 +24,8 @@ def main():
     while True:
         #manOnMoonRoom()
         constellationRoom()
-<<<<<<< HEAD
         #dinosaurRoom()
-=======
-        dinosaurRoom()
-        grandRoom()
->>>>>>> bec7b7259cbd2136be470ddfd9f6d94fabfef5d9
-
+        #grandRoom()
 
 def manOnMoonRoom():
     manOnMoonBackGround = pygame.image.load('manOnTheMoon.jpg')
@@ -53,7 +48,6 @@ def constellationRoom():
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
                 terminate()
-
         DISPLAYSURF.fill(BGCOLOR)
         DISPLAYSURF.blit(constellationBackground, (0, 0))
         pygame.display.update()
